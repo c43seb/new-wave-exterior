@@ -1,0 +1,13 @@
+{
+  "name": "New Wave Exterior",
+  "short_name": "New Wave",
+  "description": "Residential window, screen, and pressure washing in Lakeway, Bee Cave, West Lake Hills, The Hills, and Austin, TX.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f2f5f7",
+  "theme_color": "#1b5ca3",
+  "icons": [
+    { "src": "/icon", "sizes": "64x64", "type": "image/png" },
+    { "src": "/apple-icon", "sizes": "180x180", "type": "image/png" }
+  ]
+}

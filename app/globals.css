@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f2f5f7;
+  --bg-raised: #ffffff;
+  --bg-sunken: #e7ecf0;
+  --ink: #0f1d26;
+  --ink-soft: #445c68;
+  --ink-faint: #6c8290;
+  --accent: #1b5ca3;
+  --accent-strong: #0f3d73;
+  --accent-soft: #deeaf7;
+  --sun: #c97a1f;
+  --sun-soft: #f6e3c6;
+  --line: rgba(15, 29, 38, 0.13);
+  --line-strong: rgba(15, 29, 38, 0.22);
+  --shadow: 0 1px 2px rgba(15, 29, 38, 0.06);
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b161f;
+  --bg-raised: #11202b;
+  --bg-sunken: #0a121a;
+  --ink: #ecf2f5;
+  --ink-soft: #9fb3be;
+  --ink-faint: #718a97;
+  --accent: #5fa0e6;
+  --accent-strong: #8cc3f2;
+  --accent-soft: #163049;
+  --sun: #e7a94e;
+  --sun-soft: #2e2313;
+  --line: rgba(236, 242, 245, 0.14);
+  --line-strong: rgba(236, 242, 245, 0.24);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b161f;
+    --bg-raised: #11202b;
+    --bg-sunken: #0a121a;
+    --ink: #ecf2f5;
+    --ink-soft: #9fb3be;
+    --ink-faint: #718a97;
+    --accent: #5fa0e6;
+    --accent-strong: #8cc3f2;
+    --accent-soft: #163049;
+    --sun: #e7a94e;
+    --sun-soft: #2e2313;
+    --line: rgba(236, 242, 245, 0.14);
+    --line-strong: rgba(236, 242, 245, 0.24);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+/* Visible, high-contrast focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  background: var(--bg-raised);
+  color: var(--ink);
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  border: 1px solid var(--line-strong);
+  transition: top 150ms ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* minimum comfortable tap target */
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+}

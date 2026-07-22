@@ -1,0 +1,552 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New Wave Exterior &mdash; Book a quote</title>
+<style>
+@font-face{font-family:'Big Shoulders';font-style:normal;font-weight:600 900;font-display:swap;src:url(data:font/woff2;base64,{{BIG_SHOULDERS_B64}}) format('woff2');}
+@font-face{font-family:'Libre Franklin';font-style:normal;font-weight:300 800;font-display:swap;src:url(data:font/woff2;base64,{{LIBRE_FRANKLIN_B64}}) format('woff2');}
+@font-face{font-family:'Libre Franklin';font-style:italic;font-weight:400 600;font-display:swap;src:url(data:font/woff2;base64,{{LIBRE_FRANKLIN_ITALIC_B64}}) format('woff2');}
+
+:root{
+  --bg:#F2F5F7;
+  --bg-raised:#FFFFFF;
+  --bg-sunken:#E7ECF0;
+  --ink:#0F1D26;
+  --ink-soft:#445C68;
+  --ink-faint:#6C8290;
+  --accent:#1B5CA3;
+  --accent-strong:#0F3D73;
+  --accent-soft:#DEEAF7;
+  --sun:#C97A1F;
+  --sun-soft:#F6E3C6;
+  --line:rgba(15,29,38,0.13);
+  --line-strong:rgba(15,29,38,0.22);
+  --shadow:0 1px 2px rgba(15,29,38,0.06);
+  --radius-sm:3px;
+  --radius-md:6px;
+  --font-display:'Big Shoulders',system-ui,sans-serif;
+  --font-body:'Libre Franklin',system-ui,sans-serif;
+}
+:root[data-theme="dark"]{
+  --bg:#0B161F;
+  --bg-raised:#11202B;
+  --bg-sunken:#0A121A;
+  --ink:#ECF2F5;
+  --ink-soft:#9FB3BE;
+  --ink-faint:#718A97;
+  --accent:#5FA0E6;
+  --accent-strong:#8CC3F2;
+  --accent-soft:#163049;
+  --sun:#E7A94E;
+  --sun-soft:#2E2313;
+  --line:rgba(236,242,245,0.14);
+  --line-strong:rgba(236,242,245,0.24);
+  --shadow:0 1px 2px rgba(0,0,0,0.3);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B161F;
+    --bg-raised:#11202B;
+    --bg-sunken:#0A121A;
+    --ink:#ECF2F5;
+    --ink-soft:#9FB3BE;
+    --ink-faint:#718A97;
+    --accent:#5FA0E6;
+    --accent-strong:#8CC3F2;
+    --accent-soft:#163049;
+    --sun:#E7A94E;
+    --sun-soft:#2E2313;
+    --line:rgba(236,242,245,0.14);
+    --line-strong:rgba(236,242,245,0.24);
+    --shadow:0 1px 2px rgba(0,0,0,0.3);
+  }
+}
+
+*{box-sizing:border-box;}
+body{margin:0;}
+.ee-root{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.ee-root a{color:inherit;}
+.ee-root h1,.ee-root h2,.ee-root h3{
+  font-family:var(--font-display);
+  font-weight:800;
+  line-height:0.98;
+  margin:0;
+  color:var(--ink);
+  text-wrap:balance;
+}
+.ee-root p{margin:0;}
+.ee-root ul{margin:0;padding:0;list-style:none;}
+.ee-wrap{max-width:1120px;margin:0 auto;padding-left:clamp(20px,4vw,48px);padding-right:clamp(20px,4vw,48px);}
+.ee-eyebrow{
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:12.5px;
+  letter-spacing:0.13em;
+  text-transform:uppercase;
+  color:var(--accent);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.ee-eyebrow::before{content:"";width:22px;height:1px;background:var(--accent);display:inline-block;}
+:root[data-theme="dark"] .ee-eyebrow, .ee-root .ee-eyebrow{color:var(--accent-strong);}
+
+button, input, select, textarea{font-family:inherit;font-size:16px;color:inherit;}
+.ee-root :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+.ee-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--font-body);font-weight:600;font-size:15px;
+  padding:13px 22px;border-radius:var(--radius-sm);border:1px solid transparent;
+  cursor:pointer;text-decoration:none;line-height:1;white-space:nowrap;
+  transition:transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+.ee-btn:active{transform:scale(0.98);}
+.ee-btn-primary{background:var(--accent);color:var(--bg-raised);border-color:var(--accent);}
+.ee-btn-primary:hover{background:var(--accent-strong);border-color:var(--accent-strong);}
+.ee-btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-strong);}
+.ee-btn-ghost:hover{border-color:var(--ink-faint);background:var(--bg-sunken);}
+.ee-btn-sm{padding:9px 16px;font-size:13.5px;}
+
+/* header */
+.ee-header{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.ee-header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:16px;padding-bottom:16px;}
+.ee-wordmark{
+  font-family:var(--font-display);font-weight:800;font-size:20px;
+  letter-spacing:0.02em;text-transform:uppercase;white-space:nowrap;
+  display:flex;align-items:baseline;gap:2px;
+}
+.ee-wordmark span{color:var(--accent);}
+.ee-nav{display:flex;align-items:center;gap:28px;}
+.ee-nav a{font-size:14.5px;font-weight:500;color:var(--ink-soft);text-decoration:none;}
+.ee-nav a:hover{color:var(--ink);}
+.ee-header-actions{display:flex;align-items:center;gap:10px;}
+@media (max-width:760px){
+  .ee-nav{display:none;}
+}
+
+/* hero */
+.ee-hero{position:relative;padding-top:clamp(48px,7vw,72px);padding-bottom:clamp(36px,5vw,48px);}
+.ee-hero-inner{max-width:640px;}
+.ee-hero h1{font-size:clamp(2.4rem,5.6vw,3.8rem);letter-spacing:-0.01em;}
+.ee-hero-sub{margin-top:16px;max-width:46ch;font-size:clamp(16px,1.6vw,18.5px);color:var(--ink-soft);}
+.ee-hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;}
+.ee-hero-trust{margin-top:20px;font-size:13.5px;color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;}
+.ee-hero-trust b{color:var(--ink-soft);font-weight:600;}
+.ee-hero-eyebrow{margin-bottom:18px;}
+
+/* before / after gallery */
+.ee-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,32px);}
+@media (max-width:820px){.ee-gallery{grid-template-columns:1fr;max-width:420px;margin:0 auto;}}
+.ee-pair-label{font-size:15px;font-weight:600;margin-bottom:12px;}
+.ee-pair-photos{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;}
+.ee-pair-arrow{width:16px;height:16px;color:var(--ink-faint);flex-shrink:0;}
+.ee-photo-slot{
+  position:relative;aspect-ratio:1/1;border-radius:8px;overflow:hidden;
+  border:1px solid var(--line);background:var(--bg-sunken);
+}
+.ee-photo-slot svg{display:block;width:100%;height:100%;}
+.ee-photo-caption{
+  position:absolute;bottom:8px;right:8px;
+  font-size:9.5px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;
+  padding:2px 7px;border-radius:100px;background:rgba(0,0,0,0.4);color:#fff;
+}
+.ee-photo-tag{
+  position:absolute;top:8px;left:8px;
+  font-size:10.5px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;
+  padding:3px 8px;border-radius:100px;background:var(--bg-raised);border:1px solid var(--line);color:var(--ink-soft);
+}
+
+/* section rhythm */
+.ee-section{padding-top:clamp(56px,8vw,96px);padding-bottom:clamp(56px,8vw,96px);}
+.ee-section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:clamp(32px,4vw,48px);flex-wrap:wrap;}
+.ee-section-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem);}
+.ee-section-note{max-width:36ch;font-size:15px;color:var(--ink-soft);}
+
+/* services */
+.ee-services{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+@media (max-width:820px){.ee-services{grid-template-columns:1fr;}}
+.ee-service{background:var(--bg-raised);padding:clamp(24px,3vw,32px);display:flex;flex-direction:column;gap:16px;}
+.ee-service-icon{width:46px;height:46px;color:var(--accent);}
+.ee-service-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.ee-badge-new{
+  font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--sun);background:var(--sun-soft);padding:5px 9px;border-radius:100px;
+}
+.ee-service h3{font-size:20px;font-weight:700;letter-spacing:0;text-transform:none;}
+.ee-service-desc{font-size:14.5px;color:var(--ink-soft);}
+
+/* quote form */
+.ee-quote{background:var(--bg-raised);border:1px solid var(--line);border-radius:10px;padding:clamp(24px,4vw,44px);}
+.ee-quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 20px;}
+@media (max-width:700px){.ee-quote-grid{grid-template-columns:1fr;}}
+.ee-field{display:flex;flex-direction:column;gap:7px;}
+.ee-field-full{grid-column:1/-1;}
+.ee-field label{font-size:13px;font-weight:600;color:var(--ink-soft);}
+.ee-field .req{color:var(--sun);}
+.ee-field input[type="text"],.ee-field input[type="tel"],.ee-field input[type="email"],.ee-field select,.ee-field textarea{
+  background:var(--bg-sunken);border:1px solid var(--line-strong);border-radius:var(--radius-sm);
+  padding:11px 12px;color:var(--ink);width:100%;
+}
+.ee-field textarea{resize:vertical;min-height:88px;font-family:var(--font-body);}
+.ee-field input::placeholder,.ee-field textarea::placeholder{color:var(--ink-faint);}
+.ee-checks{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;}
+@media (max-width:500px){.ee-checks{grid-template-columns:1fr;}}
+.ee-check{display:flex;align-items:center;gap:9px;font-size:14.5px;color:var(--ink);padding:10px 12px;border:1px solid var(--line-strong);border-radius:var(--radius-sm);background:var(--bg-sunken);cursor:pointer;}
+.ee-check input{width:16px;height:16px;accent-color:var(--accent);flex-shrink:0;}
+.ee-quote-footer{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+.ee-quote-alt{font-size:13.5px;color:var(--ink-faint);}
+.ee-quote-alt a{color:var(--accent-strong);text-decoration:underline;text-underline-offset:2px;}
+#ee-status{font-size:13.5px;margin-top:14px;color:var(--accent-strong);min-height:1.2em;}
+#ee-status[data-err="1"]{color:var(--sun);}
+
+/* footer */
+.ee-footer{border-top:1px solid var(--line);padding-top:clamp(36px,5vw,52px);padding-bottom:clamp(28px,4vw,36px);}
+.ee-footer-grid{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.ee-footer-brand .ee-wordmark{margin-bottom:10px;}
+.ee-footer-tag{font-size:14px;color:var(--ink-soft);max-width:32ch;}
+.ee-footer-col h4{font-size:12.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px;}
+.ee-footer-col p, .ee-footer-col a{display:block;font-size:14px;color:var(--ink-soft);text-decoration:none;margin-bottom:6px;}
+.ee-footer-col a:hover{color:var(--accent-strong);}
+.ee-footer-bottom{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-faint);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+</style>
+
+<div class="ee-root">
+
+<header class="ee-header">
+  <div class="ee-wrap ee-header-inner">
+    <div class="ee-wordmark">NEW WAVE <span>EXTERIOR</span></div>
+    <nav class="ee-nav" aria-label="Primary">
+      <a href="#gallery">Before &amp; after</a>
+      <a href="#services">Services</a>
+    </nav>
+    <div class="ee-header-actions">
+      <a class="ee-btn ee-btn-ghost ee-btn-sm" href="tel:+15127589518">Call now</a>
+      <a class="ee-btn ee-btn-primary ee-btn-sm" href="#quote">Get a quote</a>
+    </div>
+  </div>
+</header>
+
+<section class="ee-hero">
+  <div class="ee-wrap ee-hero-inner">
+    <p class="ee-eyebrow ee-hero-eyebrow">Residential exterior cleaning &middot; Lakeway, TX</p>
+    <h1>Let the light back in.</h1>
+    <p class="ee-hero-sub">Window, screen, and pressure washing &mdash; book in under a minute, no account needed.</p>
+    <div class="ee-hero-ctas">
+      <a class="ee-btn ee-btn-primary" href="#quote">Get a free quote</a>
+      <a class="ee-btn ee-btn-ghost" href="tel:+15127589518">Call (512) 758-9518</a>
+    </div>
+    <p class="ee-hero-trust"><b>Fully insured</b> &middot; Free quotes &middot; Same-week scheduling</p>
+  </div>
+</section>
+
+<section class="ee-section" id="gallery" style="padding-top:clamp(24px,3vw,32px);">
+  <div class="ee-wrap">
+    <div class="ee-section-head">
+      <div>
+        <p class="ee-eyebrow">See the difference</p>
+        <h2 style="margin-top:12px;">Before &amp; after</h2>
+      </div>
+      <p class="ee-section-note">Illustrative examples for now &mdash; swap in your own job photos any time.</p>
+    </div>
+    <div class="ee-gallery">
+      <div class="ee-pair">
+        <p class="ee-pair-label">Window cleaning</p>
+        <div class="ee-pair-photos">
+          <div class="ee-photo-slot">
+            <span class="ee-photo-tag">Before</span>
+            <span class="ee-photo-caption">Sample</span>
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <rect width="100" height="100" fill="#9C9583"/>
+              <rect x="6" y="6" width="41" height="41" fill="#ABA48F"/>
+              <rect x="53" y="6" width="41" height="41" fill="#A39C87"/>
+              <rect x="6" y="53" width="41" height="41" fill="#A39C87"/>
+              <rect x="53" y="53" width="41" height="41" fill="#ABA48F"/>
+              <line x1="50" y1="4" x2="50" y2="96" stroke="#565042" stroke-width="2.5"/>
+              <line x1="4" y1="50" x2="96" y2="50" stroke="#565042" stroke-width="2.5"/>
+              <circle cx="20" cy="18" r="2.2" fill="#565042" opacity="0.45"/>
+              <circle cx="32" cy="30" r="1.4" fill="#565042" opacity="0.4"/>
+              <circle cx="68" cy="20" r="1.8" fill="#565042" opacity="0.4"/>
+              <circle cx="78" cy="35" r="2.4" fill="#565042" opacity="0.45"/>
+              <circle cx="25" cy="70" r="2" fill="#565042" opacity="0.4"/>
+              <circle cx="60" cy="80" r="1.6" fill="#565042" opacity="0.4"/>
+              <circle cx="85" cy="65" r="2.2" fill="#565042" opacity="0.4"/>
+              <path d="M10 85 L38 40" stroke="#6B644F" stroke-width="1.4" opacity="0.5"/>
+              <path d="M58 92 L88 45" stroke="#6B644F" stroke-width="1.4" opacity="0.5"/>
+            </svg>
+          </div>
+          <svg class="ee-pair-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="ee-photo-slot">
+            <span class="ee-photo-tag">After</span>
+            <span class="ee-photo-caption">Sample</span>
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <defs><linearGradient id="wa1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#CFE8F7"/><stop offset="1" stop-color="#7FB8E0"/></linearGradient></defs>
+              <rect width="100" height="100" fill="url(#wa1)"/>
+              <line x1="50" y1="4" x2="50" y2="96" stroke="#1B5CA3" stroke-width="2.5"/>
+              <line x1="4" y1="50" x2="96" y2="50" stroke="#1B5CA3" stroke-width="2.5"/>
+              <polygon points="14,8 26,8 8,58 2,58" fill="#ffffff" opacity="0.4"/>
+              <polygon points="66,4 76,4 50,96 44,96" fill="#ffffff" opacity="0.22"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="ee-pair">
+        <p class="ee-pair-label">Screen cleaning</p>
+        <div class="ee-pair-photos">
+          <div class="ee-photo-slot">
+            <span class="ee-photo-tag">Before</span>
+            <span class="ee-photo-caption">Sample</span>
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <defs><pattern id="meshB" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="1" fill="#8E876E"/></pattern></defs>
+              <rect width="100" height="100" fill="#D9D4C2"/>
+              <rect width="100" height="100" fill="url(#meshB)"/>
+              <ellipse cx="28" cy="32" rx="14" ry="9" fill="#6B5A3C" opacity="0.4"/>
+              <ellipse cx="66" cy="60" rx="17" ry="11" fill="#5C4A30" opacity="0.35"/>
+              <ellipse cx="76" cy="24" rx="9" ry="7" fill="#6B5A3C" opacity="0.35"/>
+            </svg>
+          </div>
+          <svg class="ee-pair-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="ee-photo-slot">
+            <span class="ee-photo-tag">After</span>
+            <span class="ee-photo-caption">Sample</span>
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <defs><pattern id="meshA" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="1" fill="#3E7CB8"/></pattern></defs>
+              <rect width="100" height="100" fill="#EAF1F7"/>
+              <rect width="100" height="100" fill="url(#meshA)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="ee-pair">
+        <p class="ee-pair-label">Pressure washing</p>
+        <div class="ee-pair-photos">
+          <div class="ee-photo-slot">
+            <span class="ee-photo-tag">Before</span>
+            <span class="ee-photo-caption">Sample</span>
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <rect width="100" height="100" fill="#B7B2A2"/>
+              <line x1="0" y1="35" x2="100" y2="35" stroke="#948E7A" stroke-width="1"/>
+              <line x1="0" y1="70" x2="100" y2="70" stroke="#948E7A" stroke-width="1"/>
+              <ellipse cx="24" cy="18" rx="15" ry="9" fill="#4C5A3A" opacity="0.42"/>
+              <ellipse cx="72" cy="50" rx="19" ry="12" fill="#3D3226" opacity="0.38"/>
+              <ellipse cx="40" cy="82" rx="17" ry="10" fill="#4C5A3A" opacity="0.32"/>
+              <ellipse cx="88" cy="86" rx="10" ry="7" fill="#3D3226" opacity="0.32"/>
+            </svg>
+          </div>
+          <svg class="ee-pair-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="ee-photo-slot">
+            <span class="ee-photo-tag">After</span>
+            <span class="ee-photo-caption">Sample</span>
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <rect width="100" height="100" fill="#E7E4D9"/>
+              <line x1="0" y1="35" x2="100" y2="35" stroke="#C9C4B2" stroke-width="1"/>
+              <line x1="0" y1="70" x2="100" y2="70" stroke="#C9C4B2" stroke-width="1"/>
+              <polygon points="0,92 100,58 100,66 0,98" fill="#ffffff" opacity="0.3"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ee-section" id="services">
+  <div class="ee-wrap">
+    <div class="ee-section-head">
+      <div>
+        <p class="ee-eyebrow">What we do</p>
+        <h2 style="margin-top:12px;">Three ways we bring<br>the shine back</h2>
+      </div>
+      <p class="ee-section-note">Book one service or bundle all three &mdash; we'll quote it either way.</p>
+    </div>
+
+    <div class="ee-services">
+      <article class="ee-service">
+        <div class="ee-service-top">
+          <svg class="ee-service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <rect x="6" y="5" width="36" height="38" rx="1.5"/>
+            <line x1="24" y1="5" x2="24" y2="43"/>
+            <line x1="6" y1="24" x2="42" y2="24"/>
+            <line x1="27" y1="10" x2="37" y2="19" stroke-width="1.2" opacity="0.55"/>
+          </svg>
+        </div>
+        <h3>Window cleaning</h3>
+        <p class="ee-service-desc">Streak-free glass, interior and exterior, including sills and tracks.</p>
+      </article>
+
+      <article class="ee-service">
+        <div class="ee-service-top">
+          <svg class="ee-service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <rect x="6" y="5" width="36" height="38" rx="1.5"/>
+            <g opacity="0.9">
+              <circle cx="14" cy="13" r="1.1" fill="currentColor" stroke="none"/>
+              <circle cx="24" cy="13" r="1.1" fill="currentColor" stroke="none"/>
+              <circle cx="34" cy="13" r="1.1" fill="currentColor" stroke="none"/>
+              <circle cx="14" cy="24" r="1.1" fill="currentColor" stroke="none"/>
+              <circle cx="24" cy="24" r="1.1" fill="currentColor" stroke="none"/>
+              <circle cx="34" cy="24" r="1.1" fill="currentColor" stroke="none"/>
+              <circle cx="14" cy="35" r="1.1" fill="currentColor" stroke="none"/>
+              <circle cx="24" cy="35" r="1.1" fill="currentColor" stroke="none"/>
+              <circle cx="34" cy="35" r="1.1" fill="currentColor" stroke="none"/>
+            </g>
+          </svg>
+        </div>
+        <h3>Screen cleaning</h3>
+        <p class="ee-service-desc">Screens pulled, washed, and rehung so the view stays clear.</p>
+      </article>
+
+      <article class="ee-service">
+        <div class="ee-service-top">
+          <svg class="ee-service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M8 40 L20 18" stroke-width="1.8"/>
+            <rect x="17" y="12" width="7" height="7" rx="1" transform="rotate(28 20 15)"/>
+            <path d="M27 15 Q34 13 39 17" stroke-width="1.2" opacity="0.6"/>
+            <path d="M29 21 Q37 20 42 25" stroke-width="1.2" opacity="0.6"/>
+            <path d="M25 27 Q33 28 37 34" stroke-width="1.2" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="ee-service-top" style="margin-top:-14px;">
+          <h3>Pressure washing</h3>
+          <span class="ee-badge-new">New service</span>
+        </div>
+        <p class="ee-service-desc">Driveways, siding, and walkways rinsed of grime and buildup.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="ee-section" id="quote" style="background:var(--bg-raised);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="ee-wrap">
+    <div class="ee-section-head">
+      <div>
+        <p class="ee-eyebrow">Get started</p>
+        <h2 style="margin-top:12px;">Book your<br>free quote</h2>
+      </div>
+      <p class="ee-section-note">Just your name, number, and address &mdash; we'll call to sort out the rest.</p>
+    </div>
+
+    <form class="ee-quote" id="ee-quote-form" novalidate>
+      <div class="ee-quote-grid">
+        <div class="ee-field">
+          <label for="ee-name">Full name <span class="req">*</span></label>
+          <input type="text" id="ee-name" name="name" placeholder="Jamie Rivera" required>
+        </div>
+        <div class="ee-field">
+          <label for="ee-phone">Phone <span class="req">*</span></label>
+          <input type="tel" id="ee-phone" name="phone" placeholder="(512) 758-9518" required>
+        </div>
+        <div class="ee-field ee-field-full">
+          <label for="ee-address">Address <span class="req">*</span></label>
+          <input type="text" id="ee-address" name="address" placeholder="123 Maple St, Lakeway, TX" required>
+        </div>
+
+        <div class="ee-field ee-field-full">
+          <label>Services wanted <span style="font-weight:400;color:var(--ink-faint);">(optional)</span></label>
+          <div class="ee-checks">
+            <label class="ee-check"><input type="checkbox" name="service" value="Window cleaning – exterior"> Window cleaning – exterior</label>
+            <label class="ee-check"><input type="checkbox" name="service" value="Window cleaning – interior"> Window cleaning – interior</label>
+            <label class="ee-check"><input type="checkbox" name="service" value="Screen cleaning"> Screen cleaning</label>
+            <label class="ee-check"><input type="checkbox" name="service" value="Pressure washing"> Pressure washing</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="ee-quote-footer">
+        <button type="submit" class="ee-btn ee-btn-primary">Send quote request</button>
+        <p class="ee-quote-alt">Prefer to talk? Call <a href="tel:+15127589518">(512) 758-9518</a> or email <a href="mailto:greystokesebastian@gmail.com">greystokesebastian@gmail.com</a></p>
+      </div>
+      <p id="ee-status" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<footer class="ee-footer">
+  <div class="ee-wrap">
+    <div class="ee-footer-grid">
+      <div class="ee-footer-brand">
+        <div class="ee-wordmark">NEW WAVE <span>EXTERIOR</span></div>
+        <p class="ee-footer-tag">Window, screen, and pressure washing for homes that deserve to shine.</p>
+      </div>
+      <div class="ee-footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+15127589518">(512) 758-9518</a>
+        <a href="mailto:greystokesebastian@gmail.com">greystokesebastian@gmail.com</a>
+        <p>Serving Lakeway, TX</p>
+      </div>
+      <div class="ee-footer-col">
+        <h4>Hours</h4>
+        <p>Mon – Sat, 8am – 6pm</p>
+        <p>Closed Sundays</p>
+      </div>
+      <div class="ee-footer-col">
+        <h4>Site</h4>
+        <a href="#gallery">Before &amp; after</a>
+        <a href="#services">Services</a>
+        <a href="#quote">Get a quote</a>
+      </div>
+    </div>
+    <div class="ee-footer-bottom">
+      <p>&copy; 2026 New Wave Exterior. Locally owned and operated.</p>
+      <p>Free quotes &middot; Fully insured</p>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var form = document.getElementById('ee-quote-form');
+  var status = document.getElementById('ee-status');
+  var DEST_EMAIL = 'greystokesebastian@gmail.com';
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    status.setAttribute('data-err','0');
+
+    var name = form.name.value.trim();
+    var phone = form.phone.value.trim();
+    var address = form.address.value.trim();
+    var services = Array.prototype.slice.call(form.querySelectorAll('input[name="service"]:checked')).map(function(el){return el.value;});
+
+    if(!name || !phone || !address){
+      status.setAttribute('data-err','1');
+      status.textContent = 'Please fill in your name, phone, and address.';
+      return;
+    }
+
+    var lines = [
+      'New quote request from the website:',
+      '',
+      'Name: ' + name,
+      'Phone: ' + phone,
+      'Address: ' + address,
+      'Services: ' + (services.length ? services.join(', ') : '(not specified)')
+    ];
+    var body = lines.join('\n');
+    var subject = 'Quote request from ' + name;
+    var mailtoUrl = 'mailto:' + DEST_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+    window.location.href = mailtoUrl;
+
+    status.textContent = 'Opening your email app with the request filled in… ';
+    var link = document.createElement('a');
+    link.href = mailtoUrl;
+    link.textContent = 'Click here if it didn\'t open.';
+    link.style.textDecoration = 'underline';
+    link.style.marginLeft = '4px';
+    status.appendChild(link);
+  });
+})();
+</script>
