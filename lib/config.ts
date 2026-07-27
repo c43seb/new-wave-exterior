@@ -54,12 +54,8 @@ export const siteConfig = {
   serviceAreaNote: "and nearby Austin-area communities",
 
   // ---- Hours ------------------------------------------------------------
-  // PLACEHOLDER — hours were never explicitly confirmed by the business
-  // owner. Update to real hours before launch.
-  businessHours: [
-    { days: "Monday – Saturday", hours: "8:00 AM – 6:00 PM" },
-    { days: "Sunday", hours: "Closed" },
-  ],
+  // Confirmed by the business owner 2026-07-27.
+  businessHours: [{ days: "Monday – Sunday", hours: "8:00 AM – 5:00 PM" }],
 
   // Shown on the quote page / after form submission.
   responseTime: "within 1 business day",

@@ -2,6 +2,49 @@ import { siteConfig } from "@/lib/config";
 import { enabledServices } from "@/data/services";
 import { faqs } from "@/data/faqs";
 
+const DAY_ORDER = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+// schema.org's OpeningHoursSpecification wants individual day names, not a
+// display-friendly range like "Monday – Sunday" — expand it here so the
+// human-readable copy in lib/config.ts can stay simple.
+function expandDayRange(range: string): string[] {
+  const parts = range.split("–").map((s) => s.trim());
+  const start = parts[0];
+  const end = parts[1];
+  if (!start) return [range];
+  if (!end) return [start];
+  const startIdx = DAY_ORDER.indexOf(start);
+  const endIdx = DAY_ORDER.indexOf(end);
+  if (startIdx === -1 || endIdx === -1) return [range];
+  const days: string[] = [];
+  for (let i = startIdx; ; i = (i + 1) % 7) {
+    days.push(DAY_ORDER[i] as string);
+    if (i === endIdx) break;
+  }
+  return days;
+}
+
+// schema.org wants opens/closes as 24-hour "HH:MM", not "8:00 AM" — convert
+// the display-friendly time here rather than storing two formats in config.
+function to24Hour(time: string): string {
+  const match = time.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!match) return time;
+  const hourStr = match[1] as string;
+  const minute = match[2] as string;
+  const period = match[3] as string;
+  let hour = parseInt(hourStr, 10) % 12;
+  if (period.toUpperCase() === "PM") hour += 12;
+  return `${String(hour).padStart(2, "0")}:${minute}`;
+}
+
 export function localBusinessSchema() {
   return {
     "@context": "https://schema.org",
@@ -26,9 +69,9 @@ export function localBusinessSchema() {
       .filter((h) => h.hours !== "Closed")
       .map((h) => ({
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: h.days,
-        opens: h.hours.split("–")[0]?.trim(),
-        closes: h.hours.split("–")[1]?.trim(),
+        dayOfWeek: expandDayRange(h.days),
+        opens: to24Hour(h.hours.split("–")[0]?.trim() ?? ""),
+        closes: to24Hour(h.hours.split("–")[1]?.trim() ?? ""),
       })),
     makesOffer: enabledServices.map((service) => ({
       "@type": "Offer",
