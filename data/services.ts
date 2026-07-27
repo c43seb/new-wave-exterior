@@ -72,7 +72,6 @@ export const services: Service[] = [
     whatsIncluded: [
       "Surface assessment to set safe pressure levels",
       "Driveways, walkways, or siding washed as requested",
-      "Soft-wash option available for delicate surfaces",
     ],
     bestFor:
       "Homeowners with visible algae, dirt streaks, or grime on hard exterior surfaces.",

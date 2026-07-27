@@ -29,9 +29,4 @@ export const faqs: FAQ[] = [
     answer:
       "Availability depends on the season and current schedule. Let us know your preferred date on the quote form and we'll confirm what's realistic when we follow up.",
   },
-  {
-    question: "What's the difference between pressure washing and soft washing?",
-    answer:
-      "Pressure washing uses high water pressure and works well on durable surfaces like concrete driveways. Soft washing uses lower pressure with a cleaning solution and is better suited to more delicate surfaces like siding or painted surfaces. We'll recommend the right approach for your surface.",
-  },
 ];
