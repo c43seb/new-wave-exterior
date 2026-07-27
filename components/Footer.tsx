@@ -71,6 +71,16 @@ export function Footer() {
                 {link.label}
               </Link>
             ))}
+            {siteConfig.googleBusinessProfileUrl ? (
+              <a
+                href={siteConfig.googleBusinessProfileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mb-1.5 block text-sm text-ink-soft hover:text-accent-strong"
+              >
+                Leave a Review
+              </a>
+            ) : null}
           </div>
         </div>
 

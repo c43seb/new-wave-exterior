@@ -12,12 +12,10 @@ has the exact link and click path so there's no guessing involved.
       and was never explicitly confirmed. Just edit the strings directly.
 - [ ] Decide whether to publish a street address. If yes, fill in
       `address.street` and `address.zip` in `lib/config.ts`.
-- [x] **Domain picked and set in code**: `newwaveexterior.com` (confirmed
-      available via WHOIS + DNS lookup). `lib/config.ts` `domain` now
-      reads `https://newwaveexterior.com`.
-  - [ ] **You still need to buy it.** Any registrar works; here are three
-        with the domain pre-filled in the search so you can go straight to
-        checkout:
+- [x] **Domain picked, purchased, and set in code**: `newwaveexterior.com`
+      — bought on Porkbun. `lib/config.ts` `domain` reads
+      `https://newwaveexterior.com`. Still needs to be connected to the
+      live deployment (see section 6) before it actually resolves anywhere.
         [Namecheap](https://www.namecheap.com/domains/registration/results/?domain=newwaveexterior.com) ·
         [Porkbun](https://porkbun.com/checkout/search?q=newwaveexterior.com) ·
         [Google Domains successor / Squarespace](https://domains.squarespace.com/search?query=newwaveexterior.com)
@@ -90,34 +88,25 @@ has the exact link and click path so there's no guessing involved.
 
 ## 6. Deploy
 
-- [x] **Git repo initialized and first commit made locally** — nothing has
-      been pushed anywhere; this only exists on your machine so far.
-- [ ] Create a GitHub repo: go to
-      [github.com/new](https://github.com/new), name it
-      `new-wave-exterior`, leave it **empty** (no README/gitignore — this
-      project already has them), click **Create repository**.
-- [ ] GitHub will show you push commands — from
-      `/Users/sebigreystoke/new-wave-exterior` run the `git remote add
-      origin ...` and `git push -u origin main` lines it gives you.
-- [ ] [Sign up for Vercel](https://vercel.com/signup) (their free Hobby
-      tier is enough for this site) — signing in with your GitHub account
-      is fastest.
-- [ ] [Add New Project](https://vercel.com/new) → import the
-      `new-wave-exterior` repo. Framework preset auto-detects as Next.js —
-      don't change anything.
-- [ ] Before clicking Deploy, expand **Environment Variables** and add
-      whichever of `RESEND_API_KEY`, `RESEND_FROM_EMAIL`,
-      `LEAD_RECIPIENT_EMAIL`, `NEXT_PUBLIC_GA_ID` you've set up. You can
-      also add these later in Project → Settings → Environment Variables
-      and redeploy.
-- [ ] Click **Deploy**. You'll get a working `*.vercel.app` URL in about a
-      minute — that's already a real, shareable, working site even before
-      you connect a domain.
-- [ ] Once `newwaveexterior.com` is purchased: in the Vercel project, go
-      to **Settings → Domains**, add `newwaveexterior.com`, and follow the
-      DNS records it shows you — add those at your registrar (Namecheap/
-      Porkbun/etc, wherever you bought it). Usually live within minutes,
-      sometimes up to 24-48 hours.
+- [x] **Git repo initialized, committed, and pushed to GitHub**:
+      [github.com/c43seb/new-wave-exterior](https://github.com/c43seb/new-wave-exterior)
+      (pushed over SSH — a deploy key was added to your GitHub account
+      under Settings → SSH keys, titled "New Wave Exterior - Claude Code").
+- [x] **Vercel project created and deployed**, connected to the GitHub
+      repo above under the `greystokesebastian-1125...` Hobby team. Live
+      at `new-wave-exterior.vercel.app` regardless of domain status below.
+- [x] **`newwaveexterior.com` and `www.newwaveexterior.com` added in
+      Vercel** (Project → Domains) and the DNS records added at Porkbun:
+      an `A` record (`@` → `216.198.79.1`) and a `CNAME` record (`www` →
+      `db1294f2b6a63d50.vercel-dns-017.com`). Porkbun's default parking
+      ALIAS record was replaced in the process — expected, not a mistake.
+- [x] **DNS propagated and verified** — both domains show "Valid
+      Configuration" in Vercel, and `https://newwaveexterior.com` loads
+      the real, live site. The site is now genuinely public.
+- [ ] Add `RESEND_API_KEY` / `RESEND_FROM_EMAIL` / `LEAD_RECIPIENT_EMAIL` /
+      `NEXT_PUBLIC_GA_ID` (whichever you've set up from sections 4–5
+      above) in Vercel → Project → Settings → Environment Variables, then
+      redeploy from the Deployments tab so they take effect.
 
 ## 7. Search visibility
 

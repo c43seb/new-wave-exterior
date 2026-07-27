@@ -87,13 +87,12 @@ export const siteConfig = {
     tiktok: "",
   },
 
-  // PLACEHOLDER — set once a Google Business Profile exists.
-  googleBusinessProfileUrl: "",
-
-  // PLACEHOLDER — set once the business has a public review page
-  // (Google, Yelp, etc). Until then the review section on the homepage
-  // stays hidden rather than showing fabricated testimonials.
-  reviewUrl: "",
+  // Google Business Profile is live and verified (confirmed 2026-07-26).
+  // This is the direct "leave a review" link generated from the profile's
+  // own "Ask for reviews" tool — clicking it takes a customer straight to
+  // the review form, no search required.
+  googleBusinessProfileUrl: "https://g.page/r/Cf_5Kdd5JCHCEBM/review",
+  reviewUrl: "https://g.page/r/Cf_5Kdd5JCHCEBM/review",
 
   // ---- Pricing ------------------------------------------------------------
   // No real prices were provided. Keep hidden until the owner sets real
