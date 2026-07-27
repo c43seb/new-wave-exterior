@@ -27,14 +27,14 @@ export function Footer() {
           <div>
             <h4 className="mb-3 text-[12.5px] font-semibold uppercase tracking-[0.08em] text-ink-faint">
               Contact
-            </h4>
+            </h4>{" "}
             <a
               href={siteConfig.phoneHref}
               onClick={() => trackEvent("phone_click", { location: "footer" })}
               className="mb-1.5 block text-sm text-ink-soft hover:text-accent-strong"
             >
               {siteConfig.phone}
-            </a>
+            </a>{" "}
             <a
               href={`mailto:${siteConfig.email}`}
               onClick={() => trackEvent("email_click", { location: "footer" })}
