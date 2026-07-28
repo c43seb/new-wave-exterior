@@ -14,22 +14,18 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           background: "#0f1d26",
-          borderRadius: 12,
+          borderRadius: 14,
         }}
       >
-        <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="none">
           <path
-            d="M3 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0"
+            d="M4 17c4 0 4-9 12-9 4 0 5 3 3 5"
             stroke="#5fa0e6"
-            strokeWidth="2.4"
+            strokeWidth="4.6"
             strokeLinecap="round"
+            fill="none"
           />
-          <path
-            d="M3 10c2-2 4-2 6 0s4 2 6 0 4-2 6 0"
-            stroke="#ffffff"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-          />
+          <circle cx="19" cy="13" r="2.4" fill="#ffffff" />
         </svg>
       </div>
     ),

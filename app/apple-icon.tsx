@@ -16,19 +16,15 @@ export default function AppleIcon() {
           background: "#0f1d26",
         }}
       >
-        <svg width="120" height="120" viewBox="0 0 24 24" fill="none">
+        <svg width="128" height="128" viewBox="0 0 24 24" fill="none">
           <path
-            d="M3 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0"
+            d="M4 17c4 0 4-9 12-9 4 0 5 3 3 5"
             stroke="#5fa0e6"
-            strokeWidth="2.2"
+            strokeWidth="4.6"
             strokeLinecap="round"
+            fill="none"
           />
-          <path
-            d="M3 10c2-2 4-2 6 0s4 2 6 0 4-2 6 0"
-            stroke="#ffffff"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-          />
+          <circle cx="19" cy="13" r="2.4" fill="#ffffff" />
         </svg>
       </div>
     ),
