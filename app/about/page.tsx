@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Container } from "@/components/Container";
 import { Eyebrow } from "@/components/SectionHeading";
 import { LinkButton } from "@/components/Button";
@@ -34,23 +35,38 @@ export default function AboutPage() {
     <>
       <section className="pb-8 pt-12 sm:pt-16">
         <Container>
-          <Eyebrow>About us</Eyebrow>
-          <h1 className="mt-4 max-w-[22ch] text-[2.2rem] sm:text-[3rem]">
-            A local crew, built around getting the details right.
-          </h1>
-          <div className="mt-5 max-w-[65ch] space-y-4 text-[16px] text-ink-soft">
-            <p>
-              {siteConfig.businessName} is locally owned and operated, serving{" "}
-              {siteConfig.serviceAreas.join(", ")}, and nearby communities. We&rsquo;re a young,
-              motivated team — and we take that as motivation to earn trust the direct way: by
-              showing up, communicating clearly, and doing careful work every time.
-            </p>
-            <p>
-              We&rsquo;re not trying to be the biggest crew in the area. We&rsquo;re trying to be
-              the one homeowners call again next year, and the one they recommend to a neighbor.
-              That means being easy to reach, straightforward about pricing and scope, and
-              treating every property like it&rsquo;s the only job on the schedule that day.
-            </p>
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-12">
+            <div>
+              <Eyebrow>About us</Eyebrow>
+              <h1 className="mt-4 max-w-[22ch] text-[2.2rem] sm:text-[3rem]">
+                A local crew, built around getting the details right.
+              </h1>
+              <div className="mt-5 max-w-[65ch] space-y-4 text-[16px] text-ink-soft">
+                <p>
+                  {siteConfig.businessName} is locally owned and operated, serving{" "}
+                  {siteConfig.serviceAreas.join(", ")}, and nearby communities. We&rsquo;re a
+                  young, motivated team — and we take that as motivation to earn trust the direct
+                  way: by showing up, communicating clearly, and doing careful work every time.
+                </p>
+                <p>
+                  We&rsquo;re not trying to be the biggest crew in the area. We&rsquo;re trying to
+                  be the one homeowners call again next year, and the one they recommend to a
+                  neighbor. That means being easy to reach, straightforward about pricing and
+                  scope, and treating every property like it&rsquo;s the only job on the schedule
+                  that day.
+                </p>
+              </div>
+            </div>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-card border border-line">
+              <Image
+                src="/images/about/water-fed-pole-cleaning.jpg"
+                alt="A New Wave Exterior technician exterior window cleaning with a water-fed pole system reaching a second-story window"
+                fill
+                sizes="(min-width: 1024px) 40vw, 90vw"
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
         </Container>
       </section>

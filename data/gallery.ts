@@ -11,10 +11,6 @@ export type GalleryProject = {
 };
 
 /**
- * No real job photos exist yet, so this list starts empty on purpose —
- * the Gallery page renders a real "add your first project" empty state
- * instead of fake before/after photos standing in for real work.
- *
  * To add a real project:
  * 1. Drop `before.jpg` and `after.jpg` into
  *    /public/images/gallery/<project-slug>/
@@ -23,4 +19,17 @@ export type GalleryProject = {
  *
  * See /public/images/gallery/README.md for the full naming convention.
  */
-export const galleryProjects: GalleryProject[] = [];
+export const galleryProjects: GalleryProject[] = [
+  {
+    slug: "lakeway-exterior-windows-01",
+    title: "From hazy to clear",
+    service: "Exterior Window Cleaning",
+    location: "Lakeway, TX",
+    beforeSrc: "/images/gallery/lakeway-exterior-windows-01/before.jpg",
+    afterSrc: "/images/gallery/lakeway-exterior-windows-01/after.jpg",
+    beforeAlt:
+      "Sliding glass window with a hazy, dust-filmed exterior pane blurring the plantation shutters and yard behind it",
+    afterAlt:
+      "Same sliding glass window after cleaning, glass fully clear with the shutters, brick sill, and yard sharply visible",
+  },
+];
