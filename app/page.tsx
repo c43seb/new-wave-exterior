@@ -3,13 +3,19 @@ import { Container } from "@/components/Container";
 import { SectionHeading, Eyebrow } from "@/components/SectionHeading";
 import { LinkButton } from "@/components/Button";
 import { IllustratedBeforeAfter } from "@/components/IllustratedBeforeAfter";
+import { RealBeforeAfter } from "@/components/RealBeforeAfter";
 import { ServiceCard } from "@/components/ServiceCard";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { ReviewSection } from "@/components/ReviewSection";
 import { siteConfig } from "@/lib/config";
 import { enabledServices } from "@/data/services";
 import { processSteps } from "@/data/process";
+import { galleryProjects } from "@/data/gallery";
 import { faqSchema } from "@/lib/schema";
+
+const windowGalleryProject = galleryProjects.find(
+  (p) => p.slug === "lakeway-exterior-windows-01"
+);
 
 export const metadata: Metadata = {
   title: "Window Cleaning in Lakeway, Bee Cave & Austin, TX",
@@ -72,10 +78,14 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="See the difference"
             title="Before & after"
-            note="Illustrative examples for now — real job photos go here once added to the gallery."
+            note="One real job below — screen and pressure washing are illustrated until we have real photos for those too."
           />
           <div className="grid gap-6 sm:grid-cols-3">
-            <IllustratedBeforeAfter pair="window" />
+            {windowGalleryProject ? (
+              <RealBeforeAfter project={windowGalleryProject} label="Window cleaning" />
+            ) : (
+              <IllustratedBeforeAfter pair="window" />
+            )}
             <IllustratedBeforeAfter pair="screen" />
             <IllustratedBeforeAfter pair="pressure-washing" />
           </div>
