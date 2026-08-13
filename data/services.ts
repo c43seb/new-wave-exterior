@@ -3,6 +3,7 @@ export type Service = {
   name: string;
   enabled: boolean;
   isNew?: boolean;
+  comingSoon?: boolean; // shown as a teaser, not bookable yet — independent of `enabled`
   shortDescription: string;
   whatsIncluded: string[];
   bestFor: string;
@@ -113,6 +114,7 @@ export const services: Service[] = [
     slug: "christmas-lights",
     name: "Christmas Light Installation",
     enabled: false,
+    comingSoon: true,
     shortDescription: "Seasonal light installation and takedown.",
     whatsIncluded: ["Installation", "Takedown at season's end"],
     bestFor: "Homeowners who want holiday lights without the ladder work.",
@@ -121,3 +123,4 @@ export const services: Service[] = [
 ];
 
 export const enabledServices = services.filter((s) => s.enabled);
+export const comingSoonServices = services.filter((s) => s.comingSoon);

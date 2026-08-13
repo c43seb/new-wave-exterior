@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Service } from "@/data/services";
 import { ServiceIcon } from "@/components/ServiceIcon";
 import { LinkButton } from "@/components/Button";
@@ -15,6 +16,11 @@ export function ServiceCard({ service, detailed = false }: { service: Service; d
         {service.isNew ? (
           <span className="rounded-full bg-sun-soft px-[9px] py-[5px] text-[11px] font-semibold uppercase tracking-wide text-sun">
             New service
+          </span>
+        ) : null}
+        {service.comingSoon ? (
+          <span className="rounded-full bg-bg-sunken px-[9px] py-[5px] text-[11px] font-semibold uppercase tracking-wide text-ink-faint">
+            Coming soon
           </span>
         ) : null}
       </div>
@@ -59,11 +65,21 @@ export function ServiceCard({ service, detailed = false }: { service: Service; d
         </div>
       ) : null}
 
-      <div className="mt-auto pt-2">
-        <LinkButton href={`/quote?service=${service.slug}`} size="sm">
-          Get a quote
-        </LinkButton>
-      </div>
+      {service.comingSoon ? (
+        <p className="mt-auto pt-2 text-[13.5px] text-ink-faint">
+          Not bookable yet — check back soon, or mention it in the notes on our{" "}
+          <Link href="/quote" className="text-accent-strong underline underline-offset-2">
+            quote form
+          </Link>{" "}
+          and we&rsquo;ll follow up.
+        </p>
+      ) : (
+        <div className="mt-auto pt-2">
+          <LinkButton href={`/quote?service=${service.slug}`} size="sm">
+            Get a quote
+          </LinkButton>
+        </div>
+      )}
     </article>
   );
 }

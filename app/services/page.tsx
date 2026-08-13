@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container";
-import { Eyebrow } from "@/components/SectionHeading";
+import { Eyebrow, SectionHeading } from "@/components/SectionHeading";
 import { ServiceCard } from "@/components/ServiceCard";
 import { LinkButton } from "@/components/Button";
-import { enabledServices } from "@/data/services";
+import { enabledServices, comingSoonServices } from "@/data/services";
 import { serviceSchema } from "@/lib/schema";
 import { ViewTracker } from "@/components/ViewTracker";
 
@@ -23,7 +23,7 @@ export default function ServicesPage() {
           <Eyebrow>What we do</Eyebrow>
           <h1 className="mt-4 max-w-[20ch] text-[2.2rem] sm:text-[3rem]">Services</h1>
           <p className="mt-3 max-w-[60ch] text-[16px] text-ink-soft">
-            Every service below is available to book today. Pick one or bundle a few — the quote
+            Everything below is available to book today. Pick one or bundle a few — the quote
             form lets you select everything you need in one pass.
           </p>
         </Container>
@@ -46,6 +46,23 @@ export default function ServicesPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema(service)) }}
         />
       ))}
+
+      {comingSoonServices.length > 0 ? (
+        <section className="border-t border-line bg-bg-sunken py-14 sm:py-16">
+          <Container>
+            <SectionHeading
+              eyebrow="What's next"
+              title="Coming soon"
+              note="Not bookable yet, but on the way."
+            />
+            <div className="grid gap-6 sm:grid-cols-2">
+              {comingSoonServices.map((service) => (
+                <ServiceCard key={service.slug} service={service} detailed />
+              ))}
+            </div>
+          </Container>
+        </section>
+      ) : null}
 
       <section className="border-t border-line py-14 sm:py-16">
         <Container>
