@@ -22,14 +22,12 @@ export type GalleryProject = {
 export const galleryProjects: GalleryProject[] = [
   {
     slug: "lakeway-exterior-windows-01",
-    title: "From hazy to clear",
+    title: "Exterior window cleaning, before and after",
     service: "Exterior Window Cleaning",
     location: "Lakeway, TX",
     beforeSrc: "/images/gallery/lakeway-exterior-windows-01/before.jpg",
     afterSrc: "/images/gallery/lakeway-exterior-windows-01/after.jpg",
-    beforeAlt:
-      "Sliding glass window with a hazy, dust-filmed exterior pane blurring the plantation shutters and yard behind it",
-    afterAlt:
-      "Same sliding glass window after cleaning, glass fully clear with the shutters, brick sill, and yard sharply visible",
+    beforeAlt: "Sliding glass window before cleaning, viewed from outside through the pane",
+    afterAlt: "Same sliding glass window after cleaning, glass streak-free and clear",
   },
 ];

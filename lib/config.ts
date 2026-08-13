@@ -61,17 +61,20 @@ export const siteConfig = {
   responseTime: "within 1 business day",
 
   // ---- Trust claims -------------------------------------------------------
-  // PLACEHOLDER — every flag defaults to false/null. Nothing here was
-  // confirmed by the business owner, so nothing renders on the site until
-  // it's explicitly turned on. Do not flip these to true unless verified
-  // (insurance certificate exists, licensing confirmed, etc) — showing an
-  // unverified insurance or licensing claim to homeowners is a real legal
-  // and trust risk.
+  // Flags default false/null until the business owner explicitly confirms
+  // them — nothing here was invented. Do not flip a flag to true without a
+  // real confirmation (insurance certificate exists, licensing confirmed,
+  // etc) — showing an unverified insurance or licensing claim to
+  // homeowners is a real legal and trust risk.
   trustClaims: {
     licensedInsured: false, // PLACEHOLDER — confirm before enabling
     yearsInBusiness: null as number | null, // PLACEHOLDER
-    satisfactionGuarantee: false, // PLACEHOLDER — confirm the actual policy before enabling
+    satisfactionGuarantee: true, // Confirmed by the business owner 2026-08-12
   },
+  // Real policy text, confirmed by the business owner 2026-08-12. Only
+  // shown when trustClaims.satisfactionGuarantee is true.
+  satisfactionGuaranteeText:
+    "If you're not happy with the work, we're happy to come back and fix it free of charge.",
 
   // ---- Social + review links --------------------------------------------
   // PLACEHOLDER — none provided yet. Leave any value empty to hide that

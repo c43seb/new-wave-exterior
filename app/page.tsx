@@ -120,6 +120,28 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+
+          {siteConfig.trustClaims.satisfactionGuarantee ? (
+            <div className="mt-10 flex flex-col items-start gap-4 rounded-card border border-accent bg-accent-soft p-6 sm:flex-row sm:items-center sm:gap-6 sm:p-7">
+              <svg
+                className="h-9 w-9 flex-shrink-0 text-accent-strong"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                aria-hidden="true"
+              >
+                <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+              <div>
+                <h3 className="text-[17px] font-bold">Not happy? We&rsquo;ll make it right.</h3>
+                <p className="mt-1 text-[14.5px] text-ink-soft">
+                  {siteConfig.satisfactionGuaranteeText}
+                </p>
+              </div>
+            </div>
+          ) : null}
         </Container>
       </section>
 
