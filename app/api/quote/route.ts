@@ -107,8 +107,7 @@ export async function POST(req: NextRequest) {
       {
         ok: true,
         delivered: false,
-        message:
-          "Request received, but email delivery isn't configured yet on this deployment (RESEND_API_KEY missing). See README.md.",
+        message: `Thanks, ${data.name}! We've got your request and will reach out ${siteConfig.responseTime}. Prefer not to wait? Call or text ${siteConfig.phone}.`,
       },
       { status: 200 }
     );

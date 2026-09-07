@@ -31,7 +31,6 @@ export function QuoteForm() {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [topLevelError, setTopLevelError] = useState<string>("");
-  const [deliveryNote, setDeliveryNote] = useState<string>("");
   const startedTracking = useRef(false);
   const renderedAtRef = useRef<number>(0);
 
@@ -108,7 +107,6 @@ export function QuoteForm() {
       }
 
       setStatus("success");
-      setDeliveryNote(json.delivered === false ? json.message : "");
       trackEvent("quote_form_submit");
     } catch {
       setStatus("error");
@@ -125,11 +123,6 @@ export function QuoteForm() {
           Thanks — we&rsquo;ll follow up {siteConfig.responseTime}. If it&rsquo;s urgent, call or
           text us directly in the meantime.
         </p>
-        {deliveryNote ? (
-          <p className="mt-3 rounded-sm border border-dashed border-line-strong bg-bg-sunken p-3 text-[13px] text-ink-faint">
-            {deliveryNote}
-          </p>
-        ) : null}
         <div className="mt-5 flex flex-wrap gap-3">
           <LinkButton href={siteConfig.phoneHref} onClick={() => trackEvent("phone_click", { location: "quote_success" })}>
             Call {siteConfig.phone}
